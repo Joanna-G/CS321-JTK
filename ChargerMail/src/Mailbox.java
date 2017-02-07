@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Mailbox {
 	
-	private ArrayList<Message> messageQueue = new ArrayList();
+	
 
 	public Mailbox(String boxName) {
 		
@@ -18,5 +18,7 @@ public class Mailbox {
 		*/
 		messageQueue.remove(message);
 	}
+	
+	private ArrayList<Message> messageQueue = new ArrayList();
 	
 }

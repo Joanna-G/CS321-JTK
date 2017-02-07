@@ -1,9 +1,6 @@
 
 public class Message {
 	
-	private String toAddress;
-	private String fromAddress;
-	private String message;
 	
 	public void setTo(String toAddress) {
 		this.toAddress = toAddress;
@@ -16,5 +13,10 @@ public class Message {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	private String toAddress;
+	private String fromAddress;
+	private String message;
+	
 	
 }
