@@ -39,11 +39,21 @@ public class System {
 		
 	}
 	
+	/**
+	 * Deletes user from System
+	 * @param userName name of user to delete
+	 */
+	
 	public void deleteUser(String userName){
 		//TODO: Implement deletion of user
 	}
 	
-	public void sendMessage(Message msg){
+	/**
+	 * Transfer messages among users
+	 * @param msg Message to be sent
+	 */
+	
+	public void transferMessage(Message msg){
 		//TODO: Implement message transmission from one user another
 	}
 	
