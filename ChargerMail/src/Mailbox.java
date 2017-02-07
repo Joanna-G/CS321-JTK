@@ -19,4 +19,16 @@ public class Mailbox {
 		messageQueue.remove(message);
 	}
 	
+	public void checkMessage(Message message){
+		
+		if(messageQueue.contains(message)){
+			
+			System.out.println("Message contained in the Mailbox");
+		}
+		
+		else{
+			System.out.println("Message IS NOT contained in the Mailbox");
+		}
+	}
+	
 }
