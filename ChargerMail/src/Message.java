@@ -17,8 +17,4 @@ public class Message {
 		this.message = message;
 	}
 	
-	public String getMessage(){
-		return message;
-	}
-
 }
