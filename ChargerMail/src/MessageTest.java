@@ -12,7 +12,7 @@ public class MessageTest {
 		Message m1 = new Message();
 		
 		//test message setting function
-		m1.setMessage("ChargerMailClient");
+		m1.setMessage("chargerMailClient");
 		
 		//test message getting function
 		System.out.println(m1.getMessage());
