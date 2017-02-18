@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Mailbox {
 
 	public Mailbox(String boxName) {
-		
+		this.boxName = boxName;
 	}
 	
 	/**
@@ -31,7 +31,25 @@ public class Mailbox {
 		messageQueue.remove(message);
 	}
 	
+	/**
+	* Empty the trash.
+	* @return true if emptied, false if not.
+	*/
+	public boolean emptyTrash() {
+		if (boxName.equals("Trash")) {
+			messageQueue.clear();
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public String getName() {
+		return boxName;
+	}
 	
 	private ArrayList<Message> messageQueue = new ArrayList();
+	private String boxName;
+
 	
 }
