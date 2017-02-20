@@ -1,5 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 /**
  * Creates an email message
@@ -25,6 +27,7 @@ public class Message {
 		this.fromAddress = fromAddress;
 		messageText = new ArrayList<String>();
 		Collections.copy(messageText,message);
+		timeStamp = new SimpleDateFormat("MM/dd/YYYYY HH.mm.ss").format(new Date());
 	}
 	
 	public String getTo() {
@@ -54,5 +57,6 @@ public class Message {
 	private String toAddress;
 	private String fromAddress;
 	private ArrayList<String> messageText;
+	private String timeStamp;
 	
 }
