@@ -24,23 +24,14 @@ public class Mailbox {
 	 */
 	public void newMessage() {
 		String toAddress;
-		ArrayList<String>messageText = new ArrayList<String>();
-		boolean done = false;
+		String messageText;
 		
 		input = new Scanner(System.in);
 		toAddress = input.nextLine();
 		input.next();
-		
-		// ArrayList holds lines of the message.
-		// Something needs to signal input is finished.
-		// When GUI is complete, we can wire it to the send button somehow.
-		while (!done) {
-			String text = input.nextLine();
-			input.next();
-			messageText.add(text);
-			if (input.nextLine().equals(""))
-				done = true;
-		}
+
+		messageText = input.nextLine();
+		input.next();
 		
 		Message newMessage = new Message();
 		newMessage.setTo(toAddress);
@@ -94,7 +85,6 @@ public class Mailbox {
 		return boxName;
 	}
 	
-	private ArrayList<Message> messageQueue = new ArrayList<Message>();
 	private String boxName;
 	private Scanner input;
 	
