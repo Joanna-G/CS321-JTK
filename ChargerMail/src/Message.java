@@ -6,7 +6,7 @@ import java.util.Date;
  *
  */
 
-public class Message {
+public class Message implements Comparable<Message> {
 	
 	public Message() {
 		
@@ -48,7 +48,7 @@ public class Message {
 	
 	public void setMessageText(String message) {
 		messageText = message;
-	}	
+	}
 	
 	public void setTimeStamp(Date time) {
 		timeStamp = time;
@@ -57,6 +57,10 @@ public class Message {
 	public Date getTimeStamp() {
 		return timeStamp;
 	}
+	
+	public int compareTo(Message o) {
+	    return getTimeStamp().compareTo(o.getTimeStamp());
+	  }
 	
 	
 	private String toAddress;
