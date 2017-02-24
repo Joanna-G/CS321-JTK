@@ -1,6 +1,3 @@
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -22,12 +19,11 @@ public class Message {
 	 * @param message String ArrayList for message text.
 	 */
 	public Message(String toAddress, String fromAddress, 
-			ArrayList<String> message) {
+			String message) {
 		this.toAddress = toAddress;
 		this.fromAddress = fromAddress;
-		messageText = new ArrayList<String>();
-		Collections.copy(messageText,message);
-		timeStamp = new SimpleDateFormat("MM/dd/YYYYY HH.mm.ss").format(new Date());
+		messageText = message;
+		this.timeStamp = new Date();
 	}
 	
 	public String getTo() {
@@ -46,17 +42,26 @@ public class Message {
 		this.fromAddress = fromAddress;
 	}
 	
-	public ArrayList<String> getMessageText() {
+	public String getMessageText() {
 		return messageText;
 	}
 	
-	public void setMessageText(ArrayList<String> message) {
-		Collections.copy(messageText, message);
+	public void setMessageText(String message) {
+		messageText = message;
+	}	
+	
+	public void setTimeStamp(Date time) {
+		timeStamp = time;
 	}
+	
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+	
 	
 	private String toAddress;
 	private String fromAddress;
-	private ArrayList<String> messageText;
-	private String timeStamp;
+	private String messageText;
+	private Date timeStamp;
 	
 }
