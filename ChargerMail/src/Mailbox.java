@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -29,19 +30,14 @@ public class Mailbox {
 		input = new Scanner(System.in);
 		toAddress = input.nextLine();
 		input.next();
-
 		messageText = input.nextLine();
 		input.next();
 		
-		Message newMessage = new Message();
-		newMessage.setTo(toAddress);
-		newMessage.setFrom(currentAccount);
-		newMessage.setMessageText(messageText);
+		Message newMessage = new Message(toAddress, currentAccount, messageText);
 		
 		// Some way to actually send the message.
 		// Like:
 		// currentAccount.send(newMessage); ??
-
 	}
 	
 	/**
@@ -71,12 +67,13 @@ public class Mailbox {
 	 * @return true if emptied, false if not.
 	 */
 	public boolean emptyTrash() {
-		// Check to make sure this is the Trash
+		// Check to make sure this is the trash
 		if (boxName.equals("Trash")) {
 			messageQueue.clear();
 			return true;
 		}
-		// If this is not the Trash, error popup or nothing happens ??
+		
+		// If this is not, error popup or nothing happens
 		else
 			return false;
 	}
@@ -85,12 +82,21 @@ public class Mailbox {
 		return boxName;
 	}
 	
+	/**
+	 * Sort messages by date
+	 */
+	public void sortMessages() {
+		Collections.sort(messageQueue);
+	}
+	
+	private ArrayList<Message> messageQueue = new ArrayList<Message>();
 	private String boxName;
 	private Scanner input;
 	
 	// Need some way to know what the current account is:
 	// private Account currentAccount;  ??
 	// For now, using a String.
+	
 	private String currentAccount;
 	
 }
