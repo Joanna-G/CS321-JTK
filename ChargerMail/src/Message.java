@@ -58,8 +58,8 @@ public class Message implements Comparable<Message> {
 		return timeStamp;
 	}
 	
-	public int compareTo(Message o) {
-	    return getTimeStamp().compareTo(o.getTimeStamp());
+	public int compareTo(Message otherMessage) {
+	    return getTimeStamp().compareTo(otherMessage.getTimeStamp());
 	  }
 	
 	
