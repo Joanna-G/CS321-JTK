@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Date;
 
 /**
  * Creates an email message
@@ -7,7 +6,7 @@ import java.util.Collections;
  *
  */
 
-public class Message {
+public class Message implements Comparable<Message> {
 	
 	public Message() {
 		
@@ -20,11 +19,11 @@ public class Message {
 	 * @param message String ArrayList for message text.
 	 */
 	public Message(String toAddress, String fromAddress, 
-			ArrayList<String> message) {
+			String message) {
 		this.toAddress = toAddress;
 		this.fromAddress = fromAddress;
-		messageText = new ArrayList<String>();
-		Collections.copy(messageText,message);
+		messageText = message;
+		this.timeStamp = new Date();
 	}
 	
 	public String getTo() {
@@ -43,16 +42,30 @@ public class Message {
 		this.fromAddress = fromAddress;
 	}
 	
-	public ArrayList<String> getMessageText() {
+	public String getMessageText() {
 		return messageText;
 	}
 	
-	public void setMessageText(ArrayList<String> message) {
-		Collections.copy(messageText, message);
+	public void setMessageText(String message) {
+		messageText = message;
 	}
+	
+	public void setTimeStamp(Date time) {
+		timeStamp = time;
+	}
+	
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+	
+	public int compareTo(Message otherMessage) {
+	    return getTimeStamp().compareTo(otherMessage.getTimeStamp());
+	  }
+	
 	
 	private String toAddress;
 	private String fromAddress;
-	private ArrayList<String> messageText;
+	private String messageText;
+	private Date timeStamp;
 	
 }

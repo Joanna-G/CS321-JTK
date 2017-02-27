@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -14,9 +15,8 @@ public class Mailbox {
 	 * @param Account The current Account address
 	 * @param boxName Inbox, Sent, or Trash
 	 */
-	public Mailbox(String Account, String boxName) {
+	public Mailbox(String boxName) {
 		this.boxName = boxName;
-		currentAccount = Account;
 	}
 	
 	/**
@@ -24,33 +24,19 @@ public class Mailbox {
 	 */
 	public void newMessage() {
 		String toAddress;
-		ArrayList<String>messageText = new ArrayList<String>();
-		boolean done = false;
+		String messageText;
 		
 		input = new Scanner(System.in);
 		toAddress = input.nextLine();
 		input.next();
+		messageText = input.nextLine();
+		input.next();
 		
-		// ArrayList holds lines of the message.
-		// Something needs to signal input is finished.
-		// When GUI is complete, we can wire it to the send button somehow.
-		while (!done) {
-			String text = input.nextLine();
-			input.next();
-			messageText.add(text);
-			if (input.nextLine().equals(""))
-				done = true;
-		}
-		
-		Message newMessage = new Message();
-		newMessage.setTo(toAddress);
-		newMessage.setFrom(currentAccount);
-		newMessage.setMessageText(messageText);
+		Message newMessage = new Message(toAddress, messageText);
 		
 		// Some way to actually send the message.
 		// Like:
 		// currentAccount.send(newMessage); ??
-
 	}
 	
 	/**
@@ -66,26 +52,29 @@ public class Mailbox {
 	 * @param message
 	 */
 	public void removeMessage(Message message) {
-		/* some Account function that copies a message to Trash box.
-		 * Like:
-		 * if (currentAccount.getName() != Trash)
-		 * currentAccount.move(message, Trash); ??
-		 */
-	
-		messageQueue.remove(message);
+		// some MailSystem function that copies a message to Trash box.
+		// Like:
+		if (!boxName.equals("Trash"))
+			MailSystem.move(message, "Trash");
+		
+		messageQueue.remove(message);	
 	}
 	
 	/**
-	 * Empty the trash.
+	 * Move all messages in Inbox/Sent to Trash or empties Trash
 	 * @return true if emptied, false if not.
 	 */
-	public boolean emptyTrash() {
-		// Check to make sure this is the Trash
+	public boolean eraseAll() {
+
 		if (boxName.equals("Trash")) {
 			messageQueue.clear();
 			return true;
 		}
-		// If this is not the Trash, error popup or nothing happens ??
+		else if ((boxName.equals("Sent")) || (boxName.equals("Inbox"))) {
+			MailSystem.moveAll(messageQueue);
+			messageQueue.clear();
+			return true;
+		}
 		else
 			return false;
 	}
@@ -94,13 +83,15 @@ public class Mailbox {
 		return boxName;
 	}
 	
+	/**
+	 * Sort messages by date
+	 */
+	public void sortMessages() {
+		Collections.sort(messageQueue);
+	}
+	
 	private ArrayList<Message> messageQueue = new ArrayList<Message>();
 	private String boxName;
 	private Scanner input;
-	
-	// Need some way to know what the current account is:
-	// private Account currentAccount;  ??
-	// For now, using a String.
-	private String currentAccount;
 	
 }
