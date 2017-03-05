@@ -12,7 +12,7 @@ public class Site {
 	 * Constructs new Site object reference and creates new queue for accounts 
 	 */
 	public Site(){
-		accountQueue = new Arraylist();
+		accountQueue = new ArrayList<Account>();
 	}
 	
 	
