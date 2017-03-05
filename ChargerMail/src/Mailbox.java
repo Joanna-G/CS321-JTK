@@ -32,7 +32,7 @@ public class Mailbox {
 		messageText = input.nextLine();
 		input.next();
 		
-		Message newMessage = new Message(toAddress, messageText);
+		//Message newMessage = new Message(toAddress, messageText);
 		
 		// Some way to actually send the message.
 		// Like:
@@ -55,7 +55,7 @@ public class Mailbox {
 		// some MailSystem function that copies a message to Trash box.
 		// Like:
 		if (!boxName.equals("Trash"))
-			MailSystem.move(message, "Trash");
+			//MailSystem.move(message, "Trash");
 		
 		messageQueue.remove(message);	
 	}
@@ -71,7 +71,7 @@ public class Mailbox {
 			return true;
 		}
 		else if ((boxName.equals("Sent")) || (boxName.equals("Inbox"))) {
-			MailSystem.moveAll(messageQueue);
+			//MailSystem.moveAll(messageQueue);
 			messageQueue.clear();
 			return true;
 		}

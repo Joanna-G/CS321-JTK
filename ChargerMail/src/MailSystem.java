@@ -1,17 +1,19 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * 
  * @author tevonwalker
  * A class for implementing and managing ChargerMail, a simple mail client
  */
-public class System {
+public class MailSystem {
 
 	/**
 	 * Default constructor creates empty system
 	 */
 	
-	public System(){
-		
+	public MailSystem(){
+		userQueue = new ArrayList();
+		accountQueue = new ArrayList();
 	}
 	
 	/**
@@ -22,8 +24,16 @@ public class System {
 	
 	private boolean isNewUserUnique(String userName){
 		
-		//TODO: implement a check to test if this username is already taken
-		return true;
+		Iterator<User> list = userQueue.iterator();
+		while (list.hasNext())
+		{
+			User temp = list.next();
+			if(temp.getUserName().equals(userName))
+			{
+				return false;
+			}
+		}
+		 return true;
 	}
 	
 	/**
@@ -31,10 +41,17 @@ public class System {
 	 * @param userName the desired user name of the new user
 	 */
 	
-	public void createNewUser(String userName){
+	public boolean createNewUser(String userName){
 		
 		if(isNewUserUnique(userName)){
 			userQueue.add(new User(userName));
+			System.out.print("User '" + userName + "' sucessfully added");
+			return true;
+		}
+		
+		else{
+			System.out.print("There exists a user with this name already");
+			return false;
 		}
 		
 	}
@@ -58,6 +75,7 @@ public class System {
 	}
 	
 	
-	private ArrayList<User> userQueue = new ArrayList();
+	private ArrayList<User> userQueue;
+	private ArrayList<Account> accountQueue;
 
 }
