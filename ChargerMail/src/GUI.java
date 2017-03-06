@@ -98,27 +98,32 @@ public class GUI {
 		buttonPanel.add(emptyTrashButton);
 		
 		JPanel split = new JPanel();
-	
-		JPanel textPanel = new JPanel();
-		JTextField text = new JTextField(50);
-		text.setText("This is some text stuff.");
-		textPanel.add(text);
-		
-		JPanel treePanel = new JPanel();
-		JTextField treeText = new JTextField(50);
-		text.setText("This is some text stuff.");
-		textPanel.add(treeText);
-		
-		split.setLayout(new FlowLayout());
-		split.add(treePanel);
-		split.add(textPanel);
 
-		frame.add(menuPanel, BorderLayout.NORTH);
-		frame.add(buttonPanel, BorderLayout.CENTER);
-		frame.add(split, BorderLayout.SOUTH);
+		JTextField treeText = new JTextField();
+	
+		treeText.setText("This is some text stuff.");
+		treeText.setEditable(false);
+		treeText.setHorizontalAlignment(JTextField.CENTER);
+		
+		JTextField messages = new JTextField();
+		messages.setText("This is some other text stuff.");
+		messages.setHorizontalAlignment(JTextField.CENTER);
+				
+		split.setLayout(new GridLayout());
+		split.add(treeText);
+		split.add(messages);
+		
+		JPanel accessPanel = new JPanel();
+		accessPanel.setLayout(new GridLayout());
+		accessPanel.add(menuPanel);
+		accessPanel.add(buttonPanel);
+		
+		frame.add(accessPanel, BorderLayout.NORTH);
+		frame.add(split, BorderLayout.CENTER);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
+		frame.setSize(1000, 500);
+	//	frame.pack();
 		frame.setVisible(true);
 	}
 
