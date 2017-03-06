@@ -7,9 +7,9 @@ import java.awt.event.*;
  * @author Joanna Pease
  *
  */
-public class GUI {
+public class GuiSecondary {
 	
-	public GUI() {
+	public GuiSecondary() {
 		JFrame frame = new JFrame();
 		
 		JPanel menuPanel = new JPanel();

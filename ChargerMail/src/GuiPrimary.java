@@ -8,7 +8,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 import java.awt.*;
 
-public class MyGui{
+public class GuiPrimary{
 
 	private JFrame frame;
 	//private JPanel panel;
@@ -35,7 +35,7 @@ public class MyGui{
 	
 	JToolBar toolBar;
 	
-	public MyGui(){  //Constructor initialization
+	public GuiPrimary(){  //Constructor initialization
 		
 		initGui();
 	}
