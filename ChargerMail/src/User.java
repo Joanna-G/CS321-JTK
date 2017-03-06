@@ -1,7 +1,7 @@
 
 /**
  * Class to implement a user within email client system
- * @author tevonwalker
+ * @author Tevon Walker
  *
  */
 

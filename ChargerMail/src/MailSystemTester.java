@@ -1,8 +1,9 @@
 /**
- * 
- * @author tevonwalker
- *
+ * class to test MailSystem
+ * @author Tevon Walker
+ *	
  */
+
 
 import java.util.Scanner;
 

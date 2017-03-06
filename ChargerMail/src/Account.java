@@ -1,6 +1,6 @@
 /**
  * 
- * @author tevonwalker
+ * @author Tevon Walker
  *
  */
 public class Account {

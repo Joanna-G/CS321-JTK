@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
+ *  A class for implementing and managing ChargerMail, a simple mail client
+ * @author Tevon Walker
  * 
- * @author tevonwalker
- * A class for implementing and managing ChargerMail, a simple mail client
  */
 public class MailSystem {
 
