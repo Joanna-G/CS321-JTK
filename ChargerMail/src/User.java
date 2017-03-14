@@ -1,7 +1,7 @@
 
 /**
  * Class to implement a user within email client system
- * @author tevonwalker
+ * @author Tevon Walker
  *
  */
 
@@ -72,7 +72,6 @@ public class User {
 		return surname;
 	}
 	
-	//TODO: Implement an authentication mechanism so that a user can log in and out
 	
 	
 	private String username;

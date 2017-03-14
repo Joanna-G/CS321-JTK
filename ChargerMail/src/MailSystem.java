@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
+ *  A class for implementing and managing ChargerMail, a simple mail client
+ * @author Tevon Walker
  * 
- * @author tevonwalker
- * A class for implementing and managing ChargerMail, a simple mail client
  */
 public class MailSystem {
 
@@ -22,7 +22,7 @@ public class MailSystem {
 	 * @return a boolean value is returned depending on whether this username is unique or not
 	 */
 	
-	private boolean isNewUserUnique(String userName){
+	public boolean isNewUserUnique(String userName){
 		
 		Iterator<User> list = userQueue.iterator();
 		while (list.hasNext())
@@ -30,6 +30,7 @@ public class MailSystem {
 			User temp = list.next();
 			if(temp.getUserName().equals(userName))
 			{
+				System.out.print("There exists a user with this name already");
 				return false;
 			}
 		}
@@ -41,19 +42,10 @@ public class MailSystem {
 	 * @param userName the desired user name of the new user
 	 */
 	
-	public boolean createNewUser(String userName){
+	public void addNewUser(User newUser){
 		
-		if(isNewUserUnique(userName)){
-			userQueue.add(new User(userName));
-			System.out.print("User '" + userName + "' sucessfully added");
-			return true;
-		}
 		
-		else{
-			System.out.print("There exists a user with this name already");
-			return false;
-		}
-		
+			userQueue.add((newUser));		
 	}
 	
 	/**
@@ -72,6 +64,43 @@ public class MailSystem {
 	
 	public void transferMessage(Message msg){
 		//TODO: Implement message transmission from one user another
+	}
+	
+	/**
+	 * Sends user firstname to GUI when username is provided
+	 * @param username
+	 * @return first name of user
+	 */
+	public String retrieveFirstName(String username)
+	{
+		Iterator<User> list = userQueue.iterator();
+		while (list.hasNext())
+		{
+			User temp = list.next();
+			if(temp.getUserName().equals(username))
+			{
+				return temp.getGivenName();
+			}
+		}
+		return null; //since a user must be clicked on, this statement is never actually reached. This is inserted to comply with Java syntax
+		
+		
+	}
+	
+	public String retrieveLastName(String username)
+	{
+		Iterator<User> list = userQueue.iterator();
+		while (list.hasNext())
+		{
+			User temp = list.next();
+			if(temp.getUserName().equals(username))
+			{
+				return temp.getSurname();
+			}
+		}
+		return null; //since a user must be clicked on, this statement is never actually reached. This is inserted to comply with Java syntax
+		
+		
 	}
 	
 	

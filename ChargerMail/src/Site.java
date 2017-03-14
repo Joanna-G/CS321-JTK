@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * Class to implement user Site 
- * @author tevonwalker
+ * @author Tevon Walker
  *
  */
 

@@ -1,8 +1,9 @@
 /**
- * 
- * @author tevonwalker
- *
+ * class to test MailSystem
+ * @author Tevon Walker
+ *	
  */
+
 
 import java.util.Scanner;
 
@@ -24,7 +25,10 @@ public class MailSystemTester {
 		
 		while(!username.equals("quit"))
 		{
-			sys.createNewUser(username);
+			if (sys.isNewUserUnique(username)){
+				User newUser = new User(username);
+				sys.addNewUser(newUser);
+			}
 			username = in.next();
 		}
 		
