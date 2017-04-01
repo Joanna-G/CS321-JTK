@@ -9,7 +9,6 @@ import java.util.Date;
 public class Message implements Comparable<Message> {
 	
 	public Message() {
-		
 	}
 	
 	/**
@@ -58,6 +57,10 @@ public class Message implements Comparable<Message> {
 		return timeStamp;
 	}
 	
+	/**
+	 * Compare two message dates.
+	 * @return an integer representing comparison
+	 */
 	public int compareTo(Message otherMessage) {
 	    return getTimeStamp().compareTo(otherMessage.getTimeStamp());
 	  }
