@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * Creates a mailbox
+ * Creates a mailbox and controls the messages in it. 
  * @author Joanna Pease
  *
  */
@@ -32,11 +32,8 @@ public class Mailbox {
 		messageText = input.nextLine();
 		input.next();
 		
-		//Message newMessage = new Message(toAddress, messageText);
-		
-		// Some way to actually send the message.
-		// Like:
-		// currentAccount.send(newMessage); ??
+		Message newMessage = new Message(toAddress, messageText);
+	
 	}
 	
 	/**
@@ -48,35 +45,19 @@ public class Mailbox {
 	}
 	
 	/**
-	 * Move a message to the trash
+	 * Delete one message.
 	 * @param message
 	 */
 	public void removeMessage(Message message) {
-		// some MailSystem function that copies a message to Trash box.
-		// Like:
-		if (!boxName.equals("Trash"))
-			//MailSystem.move(message, "Trash");
-		
 		messageQueue.remove(message);	
 	}
 	
 	/**
-	 * Move all messages in Inbox/Sent to Trash or empties Trash
+	 * Delete all messages.
 	 * @return true if emptied, false if not.
 	 */
 	public boolean eraseAll() {
-
-		if (boxName.equals("Trash")) {
-			messageQueue.clear();
-			return true;
-		}
-		else if ((boxName.equals("Sent")) || (boxName.equals("Inbox"))) {
-			//MailSystem.moveAll(messageQueue);
-			messageQueue.clear();
-			return true;
-		}
-		else
-			return false;
+		messageQueue.clear();
 	}
 	
 	public String getName() {
