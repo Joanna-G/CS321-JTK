@@ -19,10 +19,11 @@ public class Message implements Comparable<Message> {
 	 * @param message String ArrayList for message text.
 	 */
 	public Message(String toAddress, String fromAddress, 
-			String message) {
+			String message,String subject) {
 		this.toAddress = toAddress;
 		this.fromAddress = fromAddress;
 		messageText = message;
+		this.subject = subject;
 		this.timeStamp = new Date();
 	}
 	
@@ -46,6 +47,15 @@ public class Message implements Comparable<Message> {
 		return messageText;
 	}
 	
+	public String getMessageSubject()
+	{
+		return subject;
+	}
+	
+	public void setMessageSubject(String subject) {
+		this.subject = subject;
+	}
+	
 	public void setMessageText(String message) {
 		messageText = message;
 	}
@@ -66,6 +76,7 @@ public class Message implements Comparable<Message> {
 	private String toAddress;
 	private String fromAddress;
 	private String messageText;
+	private String subject;
 	private Date timeStamp;
 	
 }

@@ -72,13 +72,20 @@ public class User {
 		return surname;
 	}
 	
+	public void addAccount(Account newAccount){
+		localSite.addAccount(newAccount);
+		
+	}
+	
+	public void deleteAccount(String account){
+		localSite.deleteAccount(account);
+	}
+	
 	
 	
 	private String username;
 	private String givenName;
 	private String surname;
-	
-	private String password;
 	
 	private Site localSite;
 	private Site remoteSite;

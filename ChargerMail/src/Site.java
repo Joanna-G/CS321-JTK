@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Class to implement user Site 
@@ -25,11 +26,23 @@ public class Site {
 		
 	}
 	
-	public void deleteAccount(Account account){
-		accountQueue.remove(account);
+	public void deleteAccount(String account){
+		int index = 0;
+		
+		Iterator<Account> list = accountQueue.iterator();
+		while (list.hasNext())
+		{
+			Account temp = list.next();
+			if(temp.getAccountName().equals(account))
+			{
+				break;
+			}
+			index++;
+		}
+		
+		accountQueue.remove(index);
 	}
 
-	//TODO: implement Account Class
 	private ArrayList<Account> accountQueue;
 
 }

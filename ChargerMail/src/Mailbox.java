@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -45,19 +46,33 @@ public class Mailbox {
 	 */
 	public void addMessage(Message message) {
 		messageQueue.add(message);
+		sortMessages();
 	}
 	
 	/**
 	 * Move a message to the trash
 	 * @param message
 	 */
-	public void removeMessage(Message message) {
-		// some MailSystem function that copies a message to Trash box.
-		// Like:
-		if (!boxName.equals("Trash"))
-			//MailSystem.move(message, "Trash");
+	public Message removeMessage(String message) {
 		
-		messageQueue.remove(message);	
+		int index = 0;
+		Iterator<Message> list = messageQueue.iterator();
+		Message temp = null;
+		while (list.hasNext())
+		{
+			temp = list.next();
+			if(temp.getMessageSubject().equals(message))
+			{
+				break;
+			}
+			index++;
+		}
+		
+		
+		messageQueue.remove(index);
+		
+		sortMessages();
+		return temp;
 	}
 	
 	/**
@@ -88,6 +103,17 @@ public class Mailbox {
 	 */
 	public void sortMessages() {
 		Collections.sort(messageQueue);
+		Collections.reverseOrder();
+	}
+	
+	public ArrayList<Message> getMessages()
+	{
+		return (ArrayList<Message>) messageQueue.clone();
+	}
+	
+	public int getSize()
+	{
+		return messageQueue.size();
 	}
 	
 	private ArrayList<Message> messageQueue = new ArrayList<Message>();

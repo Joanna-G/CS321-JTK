@@ -54,7 +54,21 @@ public class MailSystem {
 	 */
 	
 	public void deleteUser(String userName){
-		//TODO: Implement deletion of user
+		int index = 0;
+		
+		Iterator<User> list = userQueue.iterator();
+		while (list.hasNext())
+		{
+			User temp = list.next();
+			if(temp.getUserName().equals(userName))
+			{
+				break;
+			}
+			index++;
+		}
+		
+		userQueue.remove(index);
+		
 	}
 	
 	/**
@@ -62,8 +76,41 @@ public class MailSystem {
 	 * @param msg Message to be sent
 	 */
 	
-	public void transferMessage(Message msg){
-		//TODO: Implement message transmission from one user another
+	public void transferMessage(String aNameSender,String aNameReceiver,Message msg,int type){
+		
+		
+		if(type == 0) //send to recipient inbox
+		{
+			Iterator<Account> list = accountQueue.iterator();
+			while (list.hasNext())
+			{
+				Account temp = list.next();
+				
+				if(temp.getAccountName().equals(aNameReceiver))
+				{
+					temp.receiveMessage(type, msg);
+				}
+			}
+			
+		}
+		
+		else if (type == 1) //send to sent box
+		{
+			Iterator<Account> list = accountQueue.iterator();
+			while (list.hasNext())
+			{
+				Account temp = list.next();
+				
+				if(temp.getAccountName().equals(aNameSender))
+				{
+					temp.receiveMessage(type, msg);
+				}
+			}
+			
+		}
+		
+		
+		
 	}
 	
 	/**
@@ -103,6 +150,118 @@ public class MailSystem {
 		
 	}
 	
+	public int getNumUsers()
+	{
+		return userQueue.size();
+	}
+	
+	public void addAccount(String userName,Account newAccount){
+
+		Iterator<User> list = userQueue.iterator();
+		while (list.hasNext())
+		{
+			User temp = list.next();
+			if(temp.getUserName().equals(userName))
+			{
+				temp.addAccount(newAccount);
+				accountQueue.add(newAccount);
+			}
+		}
+		
+	}
+	
+	public void deleteAccount(String userName,String account){
+		
+		
+		Iterator<User> list = userQueue.iterator();
+		while (list.hasNext())
+		{
+			User temp = list.next();
+			if(temp.getUserName().equals(userName))
+			{
+				temp.deleteAccount(account);
+				
+			}
+		}
+		
+		Iterator<Account> listA = accountQueue.iterator();
+		
+		int index = 0;
+		
+		while (listA.hasNext())
+		{
+			Account temp = listA.next();
+			if(temp.getAccountName().equals(account))
+			{
+				break;
+			}
+			index++;
+		}
+		
+		accountQueue.remove(index);
+		
+	}
+	
+
+	public ArrayList<Message> getMessages(String aName,int type)
+	{
+		Iterator<Account> list = accountQueue.iterator();
+		while (list.hasNext())
+		{
+			Account temp = list.next();
+			if(temp.getAccountName().equals(aName))
+			{
+				return temp.getMailboxMessages(type);
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	public void printAllAccounts()
+	{
+		Iterator<Account> list = accountQueue.iterator();
+		System.out.println("SYSTEM:");
+		while (list.hasNext())
+		{
+			System.out.println(list.next().getAccountName());
+		}
+	}
+	
+	public boolean accountExists(String aName)
+	{
+		Iterator<Account> list = accountQueue.iterator();
+		Account temp;
+		while (list.hasNext())
+		{
+			temp = list.next();
+			if(temp.getAccountName().equals(aName))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	public void deleteMessage(String account, String mess,int type)
+	{
+		Iterator<Account> list = accountQueue.iterator();
+		Account temp;
+		while (list.hasNext())
+		{
+			temp = list.next();
+			if(temp.getAccountName().equals(account))
+			{
+				temp.removeMessage(mess, type);
+			}
+		}
+		
+		
+		
+	}
 	
 	private ArrayList<User> userQueue;
 	private ArrayList<Account> accountQueue;
