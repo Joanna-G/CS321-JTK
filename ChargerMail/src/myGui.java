@@ -209,7 +209,8 @@ public class myGui{
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (contextNode != null)
 				{
-					if (contextNode.isRoot())
+					System.out.println("The node's name is: " + contextNode.toString());
+					if (!(contextNode.toString().equals("Local")) && !(contextNode.toString().equals("Remote")))
 					{
 						return;
 					}
