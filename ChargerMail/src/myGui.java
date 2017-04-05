@@ -216,7 +216,13 @@ public class myGui{
 					}
 					
 					String sName = JOptionPane.showInputDialog("Input server name");
-					Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName);
+					
+					if (sys.accountExists(contextNode.getParent().toString() + "@" + sName))
+					{
+						JOptionPane.showMessageDialog(null,"This account already exists within the system");
+						return;
+					}
+					Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
 					sys.addAccount(contextNode.getParent().toString(), newAccount);
 					DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
 					

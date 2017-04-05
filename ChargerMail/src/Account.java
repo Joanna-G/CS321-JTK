@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Account {
 	
-	public Account(String name)
+	public Account(String name,String userName)
 	{
 		//create three mailboxes
 		inbox = new Mailbox("inbox");
@@ -15,6 +15,7 @@ public class Account {
 		trash = new Mailbox("trash");
 		
 		accountName = name;
+		this.userName = userName;
 	}
 	
 	public void receiveMessage(int box, Message mess)
@@ -76,6 +77,11 @@ public class Account {
 		}
 	}
 	
+	public String getUsername()
+	{
+		return userName;
+	}
+	
 	public void removeMessage(String mess, int type)
 	{
 		if (type == 0)
@@ -98,6 +104,6 @@ public class Account {
 	
 	
 	private Mailbox inbox,sent,trash;
-	private String accountName;
+	private String accountName,userName;
 
 }

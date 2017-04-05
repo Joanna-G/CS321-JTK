@@ -67,6 +67,7 @@ public class MailSystem {
 			index++;
 		}
 		
+		deleteAccount(userName,null);
 		userQueue.remove(index);
 		
 	}
@@ -168,10 +169,13 @@ public class MailSystem {
 			}
 		}
 		
+		printAllAccounts();
+		
 	}
 	
 	public void deleteAccount(String userName,String account){
 		
+		if (account != null){ //deleting a particular account
 		
 		Iterator<User> list = userQueue.iterator();
 		while (list.hasNext())
@@ -180,7 +184,6 @@ public class MailSystem {
 			if(temp.getUserName().equals(userName))
 			{
 				temp.deleteAccount(account);
-				
 			}
 		}
 		
@@ -199,6 +202,40 @@ public class MailSystem {
 		}
 		
 		accountQueue.remove(index);
+		}
+		
+		else //deleting all accounts of a user
+		{
+			Iterator<Account> list = accountQueue.iterator();
+			Account temp;
+			String uName = null;
+			ArrayList<String> tempStore = new ArrayList<String>();
+			
+			while (list.hasNext())
+			{
+				temp = list.next();
+				uName = temp.getUsername();
+				//System.out.println("This account name is: " + temp.getAccountName() + ". The username is: " + temp.getUsername());
+				if (temp.getUsername().equals(userName))
+				{
+					tempStore.add(temp.getAccountName());
+				}
+			}
+			
+			Iterator<String> indices = tempStore.iterator();
+			
+			String tempStr;
+			
+			while(indices.hasNext())
+			{
+				tempStr = indices.next();
+				deleteAccount(uName,tempStr);
+			}
+			
+		}
+		
+		//printAllAccounts();
+
 		
 	}
 	
@@ -223,9 +260,11 @@ public class MailSystem {
 	{
 		Iterator<Account> list = accountQueue.iterator();
 		System.out.println("SYSTEM:");
+		Account temp;
 		while (list.hasNext())
 		{
-			System.out.println(list.next().getAccountName());
+			temp = list.next();
+			System.out.println(temp.getAccountName() + "belongs to: " + temp.getUsername());
 		}
 	}
 	

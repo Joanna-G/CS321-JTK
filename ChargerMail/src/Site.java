@@ -28,11 +28,12 @@ public class Site {
 	
 	public void deleteAccount(String account){
 		int index = 0;
+		Account temp;
 		
 		Iterator<Account> list = accountQueue.iterator();
 		while (list.hasNext())
 		{
-			Account temp = list.next();
+			temp = list.next();
 			if(temp.getAccountName().equals(account))
 			{
 				break;
