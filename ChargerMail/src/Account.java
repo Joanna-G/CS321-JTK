@@ -13,9 +13,8 @@ public class Account {
 		inbox = new Mailbox("inbox");
 		sent = new Mailbox("sent");
 		trash = new Mailbox("trash");
-		
-		accountName = name;
 		this.userName = userName;
+		accountName = name;
 	}
 	
 	public void receiveMessage(int box, Message mess)

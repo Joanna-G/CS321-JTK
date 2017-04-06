@@ -43,6 +43,7 @@ public class Site {
 		
 		accountQueue.remove(index);
 	}
+	
 
 	private ArrayList<Account> accountQueue;
 

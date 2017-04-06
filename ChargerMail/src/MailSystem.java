@@ -54,21 +54,32 @@ public class MailSystem {
 	 */
 	
 	public void deleteUser(String userName){
-		int index = 0;
 		
+		//remove from system userQueue
 		Iterator<User> list = userQueue.iterator();
 		while (list.hasNext())
 		{
-			User temp = list.next();
-			if(temp.getUserName().equals(userName))
+			if(list.next().getUserName().equals(userName))
 			{
-				break;
+				list.remove();
 			}
-			index++;
 		}
 		
-		deleteAccount(userName,null);
-		userQueue.remove(index);
+		
+		//remove user accounts from accountQueue
+		
+		Iterator<Account> listb = accountQueue.iterator();
+		while (listb.hasNext())
+		{
+			
+			if(listb.next().getUsername().equals(userName))
+			{
+				listb.remove();
+			}
+		
+		}
+		
+		printAllAccounts();
 		
 	}
 	
@@ -175,7 +186,6 @@ public class MailSystem {
 	
 	public void deleteAccount(String userName,String account){
 		
-		if (account != null){ //deleting a particular account
 		
 		Iterator<User> list = userQueue.iterator();
 		while (list.hasNext())
@@ -202,42 +212,14 @@ public class MailSystem {
 		}
 		
 		accountQueue.remove(index);
+		
+		printAllAccounts();
 		}
+	
+	
 		
-		else //deleting all accounts of a user
-		{
-			Iterator<Account> list = accountQueue.iterator();
-			Account temp;
-			String uName = null;
-			ArrayList<String> tempStore = new ArrayList<String>();
-			
-			while (list.hasNext())
-			{
-				temp = list.next();
-				uName = temp.getUsername();
-				//System.out.println("This account name is: " + temp.getAccountName() + ". The username is: " + temp.getUsername());
-				if (temp.getUsername().equals(userName))
-				{
-					tempStore.add(temp.getAccountName());
-				}
-			}
-			
-			Iterator<String> indices = tempStore.iterator();
-			
-			String tempStr;
-			
-			while(indices.hasNext())
-			{
-				tempStr = indices.next();
-				deleteAccount(uName,tempStr);
-			}
-			
-		}
 		
-		//printAllAccounts();
-
-		
-	}
+	
 	
 
 	public ArrayList<Message> getMessages(String aName,int type)
@@ -264,7 +246,7 @@ public class MailSystem {
 		while (list.hasNext())
 		{
 			temp = list.next();
-			System.out.println(temp.getAccountName() + "belongs to: " + temp.getUsername());
+			System.out.println(temp.getAccountName() + " which belongs to: " + temp.getUsername());
 		}
 	}
 	

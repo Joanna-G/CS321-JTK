@@ -83,6 +83,7 @@ public class User {
 	
 	
 	
+	
 	private String username;
 	private String givenName;
 	private String surname;

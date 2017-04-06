@@ -222,6 +222,8 @@ public class myGui{
 						JOptionPane.showMessageDialog(null,"This account already exists within the system");
 						return;
 					}
+					
+					System.out.println( "Username-> "  + contextNode.getParent().toString());
 					Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
 					sys.addAccount(contextNode.getParent().toString(), newAccount);
 					DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
