@@ -68,7 +68,7 @@ public class MailboxTest {
 		newBox.addMessage(newMessage2);
 		newBox.addMessage(newMessage3);
 		newBox.sortMessages();
-		assertTrue(newBox.getMessage("subject").getTimeStamp().compareTo(newBox.getMessage("subject2").getTimeStamp()) == 0);
+		assertTrue(newBox.getMessage("subject").compareTo(newBox.getMessage("subject2")) == 0);
 		
 	}
 
