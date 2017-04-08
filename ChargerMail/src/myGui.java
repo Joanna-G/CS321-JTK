@@ -512,8 +512,8 @@ public class myGui{
 	//	toolBar.setFloatable(false);
 		
 		//Add different menu to Menu bar
-		menuBar.add(menu1);
 		menuBar.add(menu2);
+		menuBar.add(menu1);
 		
 		frame.add(menuBar);
 		frame.setJMenuBar(menuBar);	
