@@ -72,13 +72,31 @@ public class User {
 		return surname;
 	}
 	
-	public void addAccount(Account newAccount){
-		localSite.addAccount(newAccount);
+	public void addAccount(Account newAccount,boolean local){
+		
+		if(local)
+		{
+			localSite.addAccount(newAccount);
+		}
+		
+		else
+		{
+			remoteSite.addAccount(newAccount);
+		}
 		
 	}
 	
-	public void deleteAccount(String account){
-		localSite.deleteAccount(account);
+	public void deleteAccount(String account,boolean local){
+		if (local)
+		{
+			localSite.deleteAccount(account);
+		}
+		
+		else
+		{
+			remoteSite.deleteAccount(account);
+		}
+		
 	}
 	
 	

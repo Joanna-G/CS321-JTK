@@ -227,13 +227,27 @@ public class myGui{
 						return;
 					}
 					
-					System.out.println( "Username-> "  + contextNode.getParent().toString());
-					Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
-					sys.addAccount(contextNode.getParent().toString(), newAccount);
-					DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
+					if (contextNode.toString().equals("Local")) //add to local site
+					{
 					
-					contextNode.add(account);
-					RefreshTree();
+						System.out.println( "Username-> "  + contextNode.getParent().toString());
+						Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
+						sys.addAccount(contextNode.getParent().toString(), newAccount,true);
+						DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
+						contextNode.add(account);
+						RefreshTree();
+					}
+					
+					else //add to remote site
+					{
+						System.out.println( "Username-> "  + contextNode.getParent().toString());
+						Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
+						sys.addAccount(contextNode.getParent().toString(), newAccount,false);
+						DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
+						contextNode.add(account);
+						RefreshTree();
+						
+					}
 			}
 			}
 		});
@@ -247,16 +261,32 @@ public class myGui{
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (contextNode != null)
 				{
-					if (contextNode.isRoot())
+					if (!(contextNode.getParent().toString().equals("Local")) && !(contextNode.getParent().toString().equals("Remote")))
 					{
 						return;
 					}
-					sys.deleteAccount(contextNode.getParent().getParent().toString(),contextNode.toString());
 					
-					DefaultMutableTreeNode temp = (DefaultMutableTreeNode) contextNode.getParent();
-					temp.remove(contextNode);
+					if (contextNode.getParent().toString() == "Local")
+					{
+						sys.deleteAccount(contextNode.getParent().getParent().toString(),contextNode.toString(),true);
+						
+						DefaultMutableTreeNode temp = (DefaultMutableTreeNode) contextNode.getParent();
+						temp.remove(contextNode);
+						
+						RefreshTree();
+						
+					}
 					
-					RefreshTree();
+					else
+					{
+						sys.deleteAccount(contextNode.getParent().getParent().toString(),contextNode.toString(),false);
+						
+						DefaultMutableTreeNode temp = (DefaultMutableTreeNode) contextNode.getParent();
+						temp.remove(contextNode);
+						
+						RefreshTree();
+					}
+					
 			}
 			}
 		});

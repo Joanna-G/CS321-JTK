@@ -167,7 +167,7 @@ public class MailSystem {
 		return userQueue.size();
 	}
 	
-	public void addAccount(String userName,Account newAccount){
+	public void addAccount(String userName,Account newAccount,boolean local){
 
 		Iterator<User> list = userQueue.iterator();
 		while (list.hasNext())
@@ -175,7 +175,7 @@ public class MailSystem {
 			User temp = list.next();
 			if(temp.getUserName().equals(userName))
 			{
-				temp.addAccount(newAccount);
+				temp.addAccount(newAccount,local);
 				accountQueue.add(newAccount);
 			}
 		}
@@ -184,7 +184,7 @@ public class MailSystem {
 		
 	}
 	
-	public void deleteAccount(String userName,String account){
+	public void deleteAccount(String userName,String account,boolean local){
 		
 		
 		Iterator<User> list = userQueue.iterator();
@@ -193,7 +193,7 @@ public class MailSystem {
 			User temp = list.next();
 			if(temp.getUserName().equals(userName))
 			{
-				temp.deleteAccount(account);
+				temp.deleteAccount(account,local);
 			}
 		}
 		
