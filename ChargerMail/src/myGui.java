@@ -398,8 +398,8 @@ public class myGui{
 		optionPanel.add(new JSeparator(JSeparator.HORIZONTAL));
 		
 		composePanel.add(new JSeparator(JSeparator.HORIZONTAL));
-		btn = new JButton("Compose");
-		composePanel.add(btn);
+		JLabel composeLabel = new JLabel("Compose");
+		composePanel.add(composeLabel);
 		composePanel.add(new JSeparator(JSeparator.HORIZONTAL));
 		
 		sendPanel.add(new JSeparator(JSeparator.HORIZONTAL));
