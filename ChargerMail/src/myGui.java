@@ -40,6 +40,7 @@ public class myGui{
 	JMenuItem optionItem1;
 	JMenuItem optionItem2;
 	JMenuItem optionItem3;
+	JLabel mailboxLabel;
 	
 	//JToolBar toolBar;
 	
@@ -108,6 +109,7 @@ public class myGui{
 		optionItem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				area.setText(null);
+				mailboxLabel.setText("Inbox");
 				treeNodeMess.removeAllChildren();
 				mailboxType = 0;
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
@@ -140,6 +142,7 @@ public class myGui{
 		optionItem2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				area.setText(null);
+				mailboxLabel.setText("Sent");
 				treeNodeMess.removeAllChildren();
 				mailboxType = 1;
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
@@ -170,6 +173,7 @@ public class myGui{
 		
 		optionItem3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				mailboxLabel.setText("Trash");
 				area.setText(null);
 				treeNodeMess.removeAllChildren();
 				mailboxType = 2;
@@ -392,7 +396,9 @@ public class myGui{
 		optionMenu.add(optionItem1);
 		optionMenu.add(optionItem2);
 		optionMenu.add(optionItem3);
+		mailboxLabel = new JLabel("");
 		optionBar.add(optionMenu);
+		optionBar.add(mailboxLabel);
 		
 		optionPanel.add(optionBar);
 		optionPanel.add(new JSeparator(JSeparator.HORIZONTAL));
