@@ -20,6 +20,7 @@ public class myGui{
 	private JButton btn2;
 	private JButton btn3;
 	private JButton btn4;
+	private JButton btn5;
 	
 	JTree tree = new JTree();
 	JTree messTree = new JTree();
@@ -31,6 +32,7 @@ public class myGui{
 	
 	JMenu menu1;
 	JMenu menu2;
+	JMenu menu3;
 	JMenu optionMenu;
 	
 	JMenuItem item1;
@@ -52,6 +54,7 @@ public class myGui{
 		treeNodeMess = new DefaultMutableTreeNode("Messages");
 		RefreshTree();
 		refreshMessageTree();
+		mailboxType = -1;
 	}
 	
 	public void initGui(){
@@ -96,6 +99,7 @@ public class myGui{
 		
 		menu1 = new JMenu("Account");
 		menu2 = new JMenu("User");
+		menu3 = new JMenu("File");
 		optionMenu = new JMenu("Mailbox");
 		
 		//Add a "Add account" sub-menu to the Account menu
@@ -110,8 +114,8 @@ public class myGui{
 			public void actionPerformed(ActionEvent event) {
 				area.setText(null);
 				mailboxLabel.setText("Inbox");
-				treeNodeMess.removeAllChildren();
 				mailboxType = 0;
+				treeNodeMess.removeAllChildren();
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (contextNode != null)
 				{
@@ -342,9 +346,24 @@ public class myGui{
 			}
 		});
 		
+		JMenuItem fileItem = new JMenuItem("Exit");
+		
+		fileItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				System.exit(0);
+			}
+		});
+		
+		menu3.add(fileItem);
+		
 		tree.addTreeSelectionListener(new TreeSelectionListener(){
 			public void valueChanged(TreeSelectionEvent tse) {
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				area.setText(null);
+				mailboxType = -1;
+				mailboxLabel.setText("<-- Select a Mailbox");
+				treeNodeMess.removeAllChildren();
+				refreshMessageTree();
 				if (contextNode != null)
 				{
 					if (contextNode.isRoot())
@@ -386,6 +405,8 @@ public class myGui{
 							}
 						}
 						
+						
+						
 					}
 			
 					
@@ -426,7 +447,7 @@ public class myGui{
 		optionMenu.add(optionItem1);
 		optionMenu.add(optionItem2);
 		optionMenu.add(optionItem3);
-		mailboxLabel = new JLabel("");
+		mailboxLabel = new JLabel("<-- Select a Mailbox");
 		optionBar.add(optionMenu);
 		optionBar.add(mailboxLabel);
 		
@@ -455,7 +476,7 @@ public class myGui{
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (contextNode != null)
 				{
-					if (contextNode.getClass().getName() == "javax.swing.tree.DefaultMutableTreeNode" && contextNode.getParent().toString() == "Local")
+					if (contextNode.getClass().getName() == "javax.swing.tree.DefaultMutableTreeNode" && (contextNode.getParent().toString() == "Local" || contextNode.getParent().toString() == "Remote"))
 					{
 						Message temp = new Message(receipientEdit.getText(),contextNode.toString(),textEdit.getText(),subjectEdit.getText());
 						sys.transferMessage(contextNode.toString(),receipientEdit.getText(),temp,1);
@@ -501,6 +522,43 @@ public class myGui{
 		panel3.add(new JSeparator(JSeparator.HORIZONTAL));
 		//	toolBar.add(btn3);
 		btn4 = new JButton("Remove");
+		btn5 = new JButton("Remove All");
+		
+		btn5.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event) {
+				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				
+				
+				if (mailboxType == -1)
+				{
+					System.out.println("Please select a maibox");
+					return;
+				}
+				
+				else if (treeNodeMess.getChildCount() == 0)
+				{
+					System.out.println("The mailbox is currently empty");
+					return;
+				}
+				
+				
+				
+				else
+				{
+					while (treeNodeMess.getChildCount() > 0)
+					{
+						contextNodeMessage = treeNodeMess.getFirstLeaf();
+						sys.deleteMessage(contextNode.toString(),contextNodeMessage.toString(),mailboxType);
+						treeNodeMess.remove(contextNodeMessage);
+					}
+					refreshMessageTree();
+					area.setText(null);
+				}
+				
+				
+		}
+		});
+		
 		
 		btn4.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
@@ -516,10 +574,11 @@ public class myGui{
 		
 		
 		panel3.add(btn4);
+		panel3.add(btn5);
 		
 		btn3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event) {
-				if (mailboxType == 0)
+				if (mailboxType == 0 && contextNodeMessage.getParent().toString() == "Messages")
 				{
 					String[] tokens = area.getText().split(" ");
 					
@@ -544,6 +603,7 @@ public class myGui{
 		//Add different menu to Menu bar
 		menuBar.add(menu2);
 		menuBar.add(menu1);
+		menuBar.add(menu3);
 		
 		frame.add(menuBar);
 		frame.setJMenuBar(menuBar);	
@@ -557,7 +617,6 @@ public class myGui{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		FillTree();
 		
 		//JScrollPane treeScroll = new JScrollPane(tree);
 		//JScrollPane areaScroll = new JScrollPane(panel);
@@ -569,19 +628,7 @@ public class myGui{
 		//frame.getContentPane().add(toolBar, BorderLayout.PAGE_START);
 	}
 	
-	public void FillTree(){
-		
-		/*DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode("Sample Email");
-		DefaultMutableTreeNode user = new DefaultMutableTreeNode("User");
-		DefaultMutableTreeNode local = new DefaultMutableTreeNode("Local");
-		DefaultMutableTreeNode remote = new DefaultMutableTreeNode("Remote");
-		user.add(local);
-		user.add(remote);
-		treeNode.add(user);
-		DefaultTreeModel dtm = new DefaultTreeModel(treeNode);
-		this.tree.setModel(dtm);*/
-
-	}
+	
 	
 	
 	public void RefreshTree()

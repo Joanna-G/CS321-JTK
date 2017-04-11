@@ -20,25 +20,6 @@ public class Mailbox {
 		this.boxName = boxName;
 	}
 	
-	/**
-	 * Create a new message to send.
-	 */
-	public void newMessage() {
-		String toAddress;
-		String messageText;
-		
-		input = new Scanner(System.in);
-		toAddress = input.nextLine();
-		input.next();
-		messageText = input.nextLine();
-		input.next();
-		
-		//Message newMessage = new Message(toAddress, messageText);
-		
-		// Some way to actually send the message.
-		// Like:
-		// currentAccount.send(newMessage); ??
-	}
 	
 	/**
 	 * Add a message to the queue
@@ -68,6 +49,10 @@ public class Mailbox {
 			index++;
 		}
 		
+		if (index == 0)
+		{
+			System.out.println("The index is zero");
+		}
 		
 		messageQueue.remove(index);
 		
@@ -103,12 +88,13 @@ public class Mailbox {
 	 */
 	public void sortMessages() {
 		Collections.sort(messageQueue);
-		Collections.reverseOrder();
+		//Collections.reverseOrder();
 	}
 	
 	public ArrayList<Message> getMessages()
 	{
-		return (ArrayList<Message>) messageQueue.clone();
+		ArrayList<Message> clone = (ArrayList<Message>) messageQueue.clone();
+		return clone;
 	}
 	
 	public int getSize()
@@ -118,6 +104,5 @@ public class Mailbox {
 	
 	private ArrayList<Message> messageQueue = new ArrayList<Message>();
 	private String boxName;
-	private Scanner input;
 	
 }
