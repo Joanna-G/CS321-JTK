@@ -27,7 +27,6 @@ public class Mailbox {
 	 */
 	public void addMessage(Message message) {
 		messageQueue.add(message);
-		sortMessages();
 	}
 	
 	/**
@@ -49,54 +48,34 @@ public class Mailbox {
 			index++;
 		}
 		
-		if (index == 0)
-		{
-			System.out.println("The index is zero");
-		}
 		
 		messageQueue.remove(index);
 		
-		sortMessages();
 		return temp;
 	}
 	
 	/**
-	 * Move all messages in Inbox/Sent to Trash or empties Trash
-	 * @return true if emptied, false if not.
+	 * Return the name of the mailbox
+	 * @return string with mailbox name
 	 */
-	public boolean eraseAll() {
-
-		if (boxName.equals("Trash")) {
-			messageQueue.clear();
-			return true;
-		}
-		else if ((boxName.equals("Sent")) || (boxName.equals("Inbox"))) {
-			//MailSystem.moveAll(messageQueue);
-			messageQueue.clear();
-			return true;
-		}
-		else
-			return false;
-	}
-	
 	public String getName() {
 		return boxName;
 	}
 	
-	/**
-	 * Sort messages by date
-	 */
-	public void sortMessages() {
-		Collections.sort(messageQueue);
-		//Collections.reverseOrder();
-	}
 	
+	/**
+	 * Returns cloned array of messages to Mailsystem
+	 * @return cloned array of messages
+	 */
 	public ArrayList<Message> getMessages()
 	{
 		ArrayList<Message> clone = (ArrayList<Message>) messageQueue.clone();
 		return clone;
 	}
-	
+	/**
+	 * Returns current number of messages in mailbox
+	 * @return integer with number of messages
+	 */
 	public int getSize()
 	{
 		return messageQueue.size();

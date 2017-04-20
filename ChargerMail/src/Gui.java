@@ -215,7 +215,7 @@ public class Gui{
 				contextNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (contextNode != null)
 				{
-					System.out.println("The node's name is: " + contextNode.toString());
+					
 					if (!(contextNode.toString().equals("Local")) && !(contextNode.toString().equals("Remote")))
 					{
 						return;
@@ -232,7 +232,7 @@ public class Gui{
 					if (contextNode.toString().equals("Local")) //add to local site
 					{
 					
-						System.out.println( "Username-> "  + contextNode.getParent().toString());
+						
 						Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
 						sys.addAccount(contextNode.getParent().toString(), newAccount,true);
 						DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
@@ -242,7 +242,7 @@ public class Gui{
 					
 					else //add to remote site
 					{
-						System.out.println( "Username-> "  + contextNode.getParent().toString());
+						
 						Account newAccount = new Account(contextNode.getParent().toString()+"@"+sName,contextNode.getParent().toString());
 						sys.addAccount(contextNode.getParent().toString(), newAccount,false);
 						DefaultMutableTreeNode account = new DefaultMutableTreeNode(contextNode.getParent().toString()+"@"+sName);
@@ -434,7 +434,7 @@ public class Gui{
 					
 					sys.deleteUser(contextNode.toString());
 					treeNode.remove(contextNode);
-					System.out.println("There are " + sys.getNumUsers() + " users in the mail system");
+					
 				
 				RefreshTree();
 				
@@ -529,13 +529,12 @@ public class Gui{
 				
 				if (mailboxType == -1)
 				{
-					System.out.println("Please select a maibox");
 					return;
 				}
 				
 				else if (treeNodeMess.getChildCount() == 0)
 				{
-					System.out.println("The mailbox is currently empty");
+					
 					return;
 				}
 				

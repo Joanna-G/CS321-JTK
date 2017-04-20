@@ -30,7 +30,7 @@ public class MailSystem {
 			User temp = list.next();
 			if(temp.getUserName().equals(userName))
 			{
-				System.out.print("There exists a user with this name already");
+				
 				return false;
 			}
 		}
@@ -44,7 +44,9 @@ public class MailSystem {
 	
 	public void addNewUser(User newUser){
 		
-		
+			if (newUser == null)
+				return;
+			
 			userQueue.add((newUser));		
 	}
 	
@@ -89,6 +91,8 @@ public class MailSystem {
 	
 	public void transferMessage(String aNameSender,String aNameReceiver,Message msg,int type){
 		
+		if (msg == null)
+			return;
 		
 		if(type == 0) //send to recipient inbox
 		{
@@ -125,15 +129,26 @@ public class MailSystem {
 	}
 	
 		
-		
-	
+	/**
+	 * Return number of users in Mailsystem
+	 * @return the integer number of users
+	 */
 	public int getNumUsers()
 	{
 		return userQueue.size();
 	}
 	
+	/**
+	 * Adds account to particular user in system
+	 * @param userName Name of user to add account to
+	 * @param newAccount the new account to add
+	 * @param local is the account local or remote?
+	 */
 	public void addAccount(String userName,Account newAccount,boolean local){
 
+		if (newAccount == null)
+			return;
+		
 		Iterator<User> list = userQueue.iterator();
 		while (list.hasNext())
 		{
@@ -147,7 +162,12 @@ public class MailSystem {
 		
 		
 	}
-	
+	/**
+	 * Removes account from particular user in system
+	 * @param userName name of user to remove account from
+	 * @param account the account to delete
+	 * @param local is the account local or remote?
+	 */
 	public void deleteAccount(String userName,String account,boolean local){
 		
 		
@@ -184,7 +204,12 @@ public class MailSystem {
 		
 	
 	
-
+/**
+ * Function to fetch an array of messages from a mailbox
+ * @param aName account name
+ * @param type inbox, sent, or trash box?
+ * @return a cloned array of messages of a particular mailbox
+ */
 	public ArrayList<Message> getMessages(String aName,int type)
 	{
 		Iterator<Account> list = accountQueue.iterator();
@@ -201,7 +226,11 @@ public class MailSystem {
 		
 	}
 	
-	
+	/**
+	 * Function to determine whether an account already exists in the system
+	 * @param aName the name of the account to test
+	 * @return true/false if the account already exists
+	 */
 	public boolean accountExists(String aName)
 	{
 		Iterator<Account> list = accountQueue.iterator();
@@ -219,6 +248,12 @@ public class MailSystem {
 		
 	}
 	
+	/**
+	 * Delete message from a mailbox
+	 * @param account name of account to delete message from
+	 * @param mess title of the message
+	 * @param type which box is this message in?
+	 */
 	public void deleteMessage(String account, String mess,int type)
 	{
 		Iterator<Account> list = accountQueue.iterator();
