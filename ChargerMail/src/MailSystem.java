@@ -12,8 +12,8 @@ public class MailSystem {
 	 */
 	
 	public MailSystem(){
-		userQueue = new ArrayList();
-		accountQueue = new ArrayList();
+		userQueue = new ArrayList<User>();
+		accountQueue = new ArrayList<Account>();
 	}
 	
 	/**
@@ -79,7 +79,6 @@ public class MailSystem {
 		
 		}
 		
-		printAllAccounts();
 		
 	}
 	
@@ -125,42 +124,8 @@ public class MailSystem {
 		
 	}
 	
-	/**
-	 * Sends user firstname to GUI when username is provided
-	 * @param username
-	 * @return first name of user
-	 */
-	public String retrieveFirstName(String username)
-	{
-		Iterator<User> list = userQueue.iterator();
-		while (list.hasNext())
-		{
-			User temp = list.next();
-			if(temp.getUserName().equals(username))
-			{
-				return temp.getGivenName();
-			}
-		}
-		return null; //since a user must be clicked on, this statement is never actually reached. This is inserted to comply with Java syntax
 		
 		
-	}
-	
-	public String retrieveLastName(String username)
-	{
-		Iterator<User> list = userQueue.iterator();
-		while (list.hasNext())
-		{
-			User temp = list.next();
-			if(temp.getUserName().equals(username))
-			{
-				return temp.getSurname();
-			}
-		}
-		return null; //since a user must be clicked on, this statement is never actually reached. This is inserted to comply with Java syntax
-		
-		
-	}
 	
 	public int getNumUsers()
 	{
@@ -180,7 +145,6 @@ public class MailSystem {
 			}
 		}
 		
-		printAllAccounts();
 		
 	}
 	
@@ -213,7 +177,6 @@ public class MailSystem {
 		
 		accountQueue.remove(index);
 		
-		printAllAccounts();
 		}
 	
 	
@@ -238,17 +201,6 @@ public class MailSystem {
 		
 	}
 	
-	public void printAllAccounts()
-	{
-		Iterator<Account> list = accountQueue.iterator();
-		System.out.println("SYSTEM:");
-		Account temp;
-		while (list.hasNext())
-		{
-			temp = list.next();
-			System.out.println(temp.getAccountName() + " which belongs to: " + temp.getUsername());
-		}
-	}
 	
 	public boolean accountExists(String aName)
 	{

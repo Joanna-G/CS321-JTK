@@ -1,4 +1,6 @@
-
+/**
+ * @author Komlan Maglo
+ */
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -11,12 +13,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class myGui{
+public class Gui{
 
 	private JFrame frame;
 	private JPanel panel;
 	private JPanel panel2;
-	private JButton btn;
 	private JButton btn2;
 	private JButton btn3;
 	private JButton btn4;
@@ -44,9 +45,8 @@ public class myGui{
 	JMenuItem optionItem3;
 	JLabel mailboxLabel;
 	
-	//JToolBar toolBar;
 	
-	public myGui(){  //Constructor initialization
+	public Gui(){  //Constructor initialization
 		
 		initGui();
 		sys = new MailSystem();
@@ -60,8 +60,6 @@ public class myGui{
 	public void initGui(){
 		
 		frame = new JFrame("JTK Email System");
-		//frame.setLayout(new FlowLayout());
-		//toolBar = new JToolBar();
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
@@ -84,7 +82,7 @@ public class myGui{
 		JLabel label = new JLabel("To :");
 		label.setLayout(new FlowLayout());
 		area = new JTextArea();
-		//area.setBackground(Color.CYAN);
+
 		area.setEditable(false);
 
 	    tree.setMinimumSize(new Dimension(50, 50));
@@ -302,7 +300,7 @@ public class myGui{
 		
 		item3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				String uname = JOptionPane.showInputDialog("Input username"); //this needs to eventually be a whole window that requests username, first name, and last name
+				String uname = JOptionPane.showInputDialog("Input username"); 
 				
 				if (uname == null)
 				{
@@ -593,15 +591,6 @@ public class myGui{
 		panel2.add(panel3);
 		panel2.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		
-		//	toolBar.add(btn4);
-		//toolBar.add(btn);	
-		//panel.add(Box.createHorizontalStrut(20));
-		//toolBar.add(btn2);
-	//	frame.add(toolBar);
-	//	toolBar.setFloatable(false);
-		
-		//Add different menu to Menu bar
-		
 		menuBar.add(menu3);
 		menuBar.add(menu2);
 		menuBar.add(menu1);
@@ -619,15 +608,6 @@ public class myGui{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		
-		//JScrollPane treeScroll = new JScrollPane(tree);
-		//JScrollPane areaScroll = new JScrollPane(panel);
-		//JScrollPane panelScroll = new JScrollPane(panel);
-		//rightPane.setLeftComponent(areaScroll);
-		//rightPane.setRightComponent(panel2);
-		//leftPane.add(treeScroll);
-		//leftPane.setLeftComponent(treeScroll);
-		//frame.getContentPane().add(toolBar, BorderLayout.PAGE_START);
 	}
 	
 	
