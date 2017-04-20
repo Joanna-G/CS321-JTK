@@ -25,6 +25,10 @@ public class Site {
 		accountQueue.add(newAccount);
 		
 	}
+	/**
+	 * Removes account from site
+	 * @param account string containing name of account to remove
+	 */
 	
 	public void deleteAccount(String account){
 		int index = 0;

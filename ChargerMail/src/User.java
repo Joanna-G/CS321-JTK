@@ -72,6 +72,12 @@ public class User {
 		return surname;
 	}
 	
+	/**
+	 * Adds new account to site
+	 * @param newAccount the new account to add
+//	 * @param local is the local or remote?
+	 */
+	
 	public void addAccount(Account newAccount,boolean local){
 		
 		if(local)
@@ -85,6 +91,11 @@ public class User {
 		}
 		
 	}
+	/**
+	 * Deletes account from sites
+	 * @param account name of account
+	 * @param local name of account
+	 */
 	
 	public void deleteAccount(String account,boolean local){
 		if (local)

@@ -2,11 +2,16 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Tevon Walker
+ * @author Komlan Maglo
  *
  */
 public class Account {
 	
+	/**
+	 * Contructor
+	 * @param name name of account
+	 * @param userName name of the user that is associated with account
+	 */
 	public Account(String name,String userName)
 	{
 		//create three mailboxes
@@ -16,6 +21,12 @@ public class Account {
 		this.userName = userName;
 		accountName = name;
 	}
+	
+	/**
+	 * Function to process incoming messages
+	 * @param box inbox/sent box/ or trash
+	 * @param mess the message to receive
+	 */
 	
 	public void receiveMessage(int box, Message mess)
 	{
@@ -37,6 +48,11 @@ public class Account {
 		return accountName;
 	}
 	
+	/**
+	 * returns clone of message list to mailsystem
+	 * @param type inbox/sent/ or trash?
+	 * @return clone of message list to mailsystem
+	 */
 	public ArrayList<Message> getMailboxMessages(int type)
 	{
 		if (type == 0)
@@ -81,6 +97,11 @@ public class Account {
 		return userName;
 	}
 	
+	/**
+	 * delete a message from a mailbox
+	 * @param mess the message to delete (message subject)
+	 * @param type inbox/sent/ or trash?
+	 */
 	public void removeMessage(String mess, int type)
 	{
 		if (type == 0)
